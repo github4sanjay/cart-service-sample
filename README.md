@@ -1,65 +1,47 @@
-# Instructions for the assignment
+# Cart Service API
+This repository contains the code for the Cart Service API, which is built using Java 17 and Spring Boot 3. The primary purpose of this API is to manage shopping cart functionalities and interact with a Product API using RestTemplate. The project also employs ProblemDetail for effective error handling.
 
-* Clone this repository on your machine.
-* Use your IDE of choice to complete the assignment.
-* When you are finished with the solution and have pushed it to the repo, [you can submit the assignment here](https://app.snapcode.review/submission_links/212fa45f-c11b-43ca-987d-974b69186982).
-* There is no time limit for this task - however, for guidance, it is expected to typically take around 1-2 hours.
+Prerequisites
+Java 17
+Spring Boot 3
+Gradle
+Getting Started
+To run the Cart Service API locally, follow these steps:
 
-# Begin the task
+1. Clone this repository:
+git clone {path}
+2. Navigate to the project directory:
+cd {folder}
+3. Build the project:
+./gradlew clean build
+4. Run the application:
+./gradlew bootRun
 
-Write some code that provides the following basic shopping cart capabilities:
+The Cart Service API will now be accessible at http://localhost:8080.
 
-1. Add a product to the cart
-   1. Specifying the product name and quantity
-   2. Use the product name to discover the price from the [Product API](#product-api) specified below
-   3. Cart state (totals, etc.) must be available
+# Shopping Cart Endpoints
+1. ```POST /api/v1/cart/{userId}/line-item```: Add a product to the cart.
+2. ```POST /api/v1/cart/{userId}```: Get a cart state.
 
-2. Calculate the state:
-   1. Cart subtotal (sum of price for all items)
-   2. Tax payable (charged at 12.5% on the subtotal)
-   3. Total payable (subtotal + tax)
-   4. Totals should be rounded up where required
+# API Documentation
+This application uses spring-doc to automate the generation of API documentation. Swagger UI is accessible at http://localhost:8080/swagger-ui/index.html.
 
-## Product API
+# Error Handling
+The Cart Service API leverages ProblemDetail for standardized error responses. When an error occurs, the API will return a JSON response following the ProblemDetail format.
 
-Base URL: `https://equalexperts.github.io/`
+Example:
 
-View Product: `GET /backend-take-home-test-data/{product}.json`
+```json
+{
+  "type": "https://api.products.com/errors/not-found",
+  "title": "Product Not Found",
+  "status": 404,
+  "detail": "Product with name sdfs not found",
+  "instance": "/api/v1/cart/sdfsdfs/line-item",
+  "errorCode": "PRODUCT_NOT_FOUND",
+  "timestamp": "2024-01-20T14:17:54.907339Z"
+}
+```
 
-Available products
-* `cheerios`
-* `cornflakes`
-* `frosties`
-* `shreddies`
-* `weetabix`
-
-## Example
-The below is a sample with the correct values you can use to confirm your calculations
-
-### Inputs
-* Add 1 × cornflakes @ 2.52 each
-* Add another 1 x cornflakes @2.52 each
-* Add 1 × weetabix @ 9.98 each
-  
-### Results  
-* Cart contains 2 x cornflakes
-* Cart contains 1 x weetabix
-* Subtotal = 15.02
-* Tax = 1.88
-* Total = 16.90
-
-## Tips on what we’re looking for
-
-We value simplicity as an architectural virtue and as a development practice. Solutions should reflect the difficulty of the assigned task, and shouldn’t be overly complex. We prefer simple, well tested solutions over clever solutions. 
-
-### DO
-
-* ✅ Include unit tests.
-* ✅ Test both any client and logic.
-* ✅ Update the README.md with any relevant information, assumptions, and/or tradeoffs you would like to highlight.
-
-### DO NOT
-
-* ❌ Submit any form of app, such as web APIs, browser, desktop, or command-line applications.
-* ❌ Add unnecessary layers of abstraction.
-* ❌ Add unnecessary patterns/ architectural features that aren’t called for e.g. persistent storage.
+# External Dependencies
+This project relies on the use of ```RestTemplate``` to communicate with the Product API. Ensure that the Product API is running and its endpoint is correctly configured in the application.properties file.

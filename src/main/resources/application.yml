@@ -1,0 +1,9 @@
+product:
+  api:
+    url: https://equalexperts.github.io
+  tax: 12.5
+
+spring:
+  mvc:
+    problemdetails:
+      enabled: true

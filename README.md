@@ -2,7 +2,7 @@
 
 * Clone this repository on your machine.
 * Use your IDE of choice to complete the assignment.
-* When you are finished with the solution and have pushed it to the repo, [you can submit the assignment here]({{submission_link}}).
+* When you are finished with the solution and have pushed it to the repo, [you can submit the assignment here](https://app.snapcode.review/submission_links/212fa45f-c11b-43ca-987d-974b69186982).
 * There is no time limit for this task - however, for guidance, it is expected to typically take around 1-2 hours.
 
 # Begin the task
